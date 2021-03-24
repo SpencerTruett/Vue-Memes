@@ -6,24 +6,30 @@
       <input placeholder="Bottom Text" type="text" v-model="bottomText" />
       <button type="submit">Generate Meme!</button>
     </form>
+    <div v-if="showMeme">
+      <meme :top="topText" :bottom="bottomText" :imageURL="imageURL" />
+    </div>
   </div>
 </template>
 
 <script>
+import Meme from "../components/Meme.vue";
+
 export default {
+  components: { Meme },
   data() {
     return {
       imageURL: "",
       topText: "",
       bottomText: "",
+      showMeme: false,
     };
   },
   methods: {
     generateMeme() {
-      console.log("building a meme....");
+      this.showMeme = true;
     },
   },
 };
 </script>
-
 <style></style>
