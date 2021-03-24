@@ -19,12 +19,16 @@
 
     <div v-if="showMeme">
       <meme class="mx-auto" :top="topText" :bottom="bottomText" :imageURL="imageURL" :width="800" />
+      <div class="text-center mt-3">
+        <v-btn type="button" @click="saveMeme" color="primary">Save this meme</v-btn>
+      </div>
     </div>
   </v-container>
 </template>
 
 <script>
 import Meme from "../components/Meme.vue";
+import { db } from "../firebase";
 
 export default {
   components: { Meme },
@@ -39,6 +43,14 @@ export default {
   methods: {
     generateMeme() {
       this.showMeme = true;
+    },
+    async saveMeme() {
+      await db.collection("memes").add({
+        topText: this.topText,
+        bottomText: this.bottomText,
+        imageURL: this.imageURL,
+        normalized: `${this.topText.toUpperCase()} ${this.bottomText.toUpperCase()}`
+      });
     },
   },
 };
