@@ -51,7 +51,7 @@ export default {
         imageURL: this.imageURL,
         normalized: `${this.topText.toUpperCase()} ${this.bottomText.toUpperCase()}`
       });
-    },
+    }
   },
 };
 </script>
