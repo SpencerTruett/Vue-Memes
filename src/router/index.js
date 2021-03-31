@@ -35,7 +35,6 @@ const routes = [
     name: "MyMemes",
     component: MyMemes,
     beforeEnter: (to, from, next) => {
-      console.log(to, from)
       if (!auth.currentUser) {
         return next({
           path: "/",

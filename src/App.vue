@@ -3,9 +3,10 @@
     <v-app-bar app color="teal darken-2" dark>
       <h1>Vue Meme Forum</h1>
       <v-spacer></v-spacer>
-      <router-link to="/create">
+      <router-link v-if="user" to="/create">
         <v-btn text>Create</v-btn>
-      </router-link>|
+      </router-link>
+      <span v-if="user">|</span>
       <router-link to="/feed">
         <v-btn text>Memes</v-btn>
       </router-link>|
