@@ -13,8 +13,10 @@
       </div>
     </div>
     <div v-else class="text-center mx-auto mt-5">
-      <h3>You don't currently have any memes</h3>
-      <v-btn to="/create" color="teal" dark>Create Memes</v-btn>
+      <div v-if="!loading">
+        <h3>You don't currently have any memes</h3>
+        <v-btn to="/create" color="teal" dark>Create Memes</v-btn>
+      </div>
     </div>
   </v-container>
 </template>
@@ -27,6 +29,7 @@ export default {
   components: {Meme},
   data() {
     return {
+      loading: true,
       memes: [],
     };
   },
@@ -43,6 +46,7 @@ export default {
         ...doc.data(),
       };
     });
+    this.loading == false;
   },
 };
 </script>
