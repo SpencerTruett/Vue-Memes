@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-app-bar app color="teal darken-2" dark>
-      <h1>Vue Meme Forum</h1>
+      <router-link to="/">
+        <h1>Vue Meme Forum</h1>
+      </router-link>
       <v-spacer></v-spacer>
       <router-link v-if="user" to="/create">
         <v-btn text>Create</v-btn>
@@ -65,5 +67,9 @@ a {
 }
 .router-link-active .v-btn {
   color: rgb(255, 200, 100);
+}
+h1 {
+  text-decoration: none;
+  color: white;
 }
 </style>
