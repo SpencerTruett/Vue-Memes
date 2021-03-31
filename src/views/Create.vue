@@ -1,27 +1,20 @@
 <template>
   <v-container>
-    <v-form @submit.prevent="generateMeme">
-      <v-row justify="space-between">
-        <v-col>
-          <v-text-field outlined v-model="imageURL" type="text" label="Image URL" />
-        </v-col>
-        <v-col>
-          <v-text-field outlined v-model="topText" type="text" label="Top Text" />
-        </v-col>
-        <v-col>
-          <v-text-field outlined v-model="bottomText" type="text" label="Bottom Text" />
-        </v-col>
-      </v-row>
-      <v-row v-if="!showMeme" justify="center">
-        <v-btn :disabled="!imageURL" text color="primary" type="submit">Generate meme!</v-btn>
-      </v-row>
-    </v-form>
+    <h1 class="teal--text text-center">My Memes</h1>
 
-    <div v-if="showMeme">
-      <meme class="mx-auto" :top="topText" :bottom="bottomText" :imageURL="imageURL" :width="800" />
-      <div class="text-center mt-3">
-        <v-btn type="button" @click="saveMeme" color="primary">Save this meme</v-btn>
+    <div v-if="memes.length">
+      <div v-for="meme in memes" :key="meme.id" class="my-5">
+        <meme
+          class="mx-auto"
+          :top="meme.topText"
+          :bottom="meme.bottomText"
+          :imageURL="meme.imageURL"
+        />
       </div>
+    </div>
+    <div v-else class="text-center mx-auto mt-5">
+      <h3>You don't currently have any memes</h3>
+      <v-btn to="/create" color="teal" dark>Create Memes</v-btn>
     </div>
   </v-container>
 </template>

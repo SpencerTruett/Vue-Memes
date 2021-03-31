@@ -21,8 +21,10 @@
 
 <script>
 import { db, auth } from "../firebase";
+import Meme from "../components/Meme"
 
 export default {
+  components: {Meme},
   data() {
     return {
       memes: [],
