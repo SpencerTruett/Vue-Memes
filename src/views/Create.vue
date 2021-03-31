@@ -28,7 +28,7 @@
 
 <script>
 import Meme from "../components/Meme.vue";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 
 export default {
   components: { Meme },
@@ -49,9 +49,10 @@ export default {
         topText: this.topText,
         bottomText: this.bottomText,
         imageURL: this.imageURL,
-        normalized: `${this.topText.toUpperCase()} ${this.bottomText.toUpperCase()}`
+        normalized: `${this.topText.toUpperCase()} ${this.bottomText.toUpperCase()}`,
+        userId: auth.currentUser.uid
       });
-   
+
       this.$router.push("/feed");
     }
   },
