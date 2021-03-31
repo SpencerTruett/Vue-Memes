@@ -5,6 +5,7 @@ import Create from "../views/Create.vue";
 import Details from "../views/Details.vue";
 import Feed from "../views/Feed.vue";
 import MyMemes from "../views/MyMemes";
+import { auth } from "../firebase";
 
 Vue.use(VueRouter);
 
@@ -32,7 +33,18 @@ const routes = [
   {
     path: "/my-memes",
     name: "MyMemes",
-    component: MyMemes
+    component: MyMemes,
+    beforeEnter: (to, from, next) => {
+      console.log(to, from)
+      if (!auth.currentUser) {
+        return next({
+          path: "/",
+          query: { unauthorized: true, redirect: to.fullPath },
+        });
+      } else {
+        return next();
+      }
+    }
   }
 ];
 

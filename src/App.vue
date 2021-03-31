@@ -38,8 +38,14 @@ export default {
     });
   },
   methods: {
-    signIn() {
-      return signIn();
+  async signIn() {
+      const route = this.$route.query.redirect
+
+      await signIn();
+
+      if (route) {
+        this.$router.push(route)
+      }
     },
     signOut() {
       signOut();
