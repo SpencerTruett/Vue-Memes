@@ -18,7 +18,7 @@ const routes = [
   {
     path: "/create",
     name: "Create",
-    component: Create,
+    component: () => import( /* webpackChunkName: "userPages" */ "../views/Create"),
   },
   {
     path: "/meme/:memeId",
@@ -33,7 +33,7 @@ const routes = [
   {
     path: "/my-memes",
     name: "MyMemes",
-    component: MyMemes,
+    component: () => import( /* webpackChunkName: "userPages" */ "../views/MyMemes"),
     beforeEnter: (to, from, next) => {
       if (!auth.currentUser) {
         return next({
